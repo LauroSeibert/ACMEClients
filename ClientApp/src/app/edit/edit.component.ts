@@ -12,7 +12,7 @@ export class EditComponent implements OnInit {
   [ ...Array(length) ].map(() => (~~(Math.random() * 36)).toString(36)).join('');
 
   public model: Client = { id: this.randomString(24), nome: "", cpf: "", sexo: '', endereco: "", status: true };
-  public data: Client[];
+  public data: Client[] = [];
   public isEdit: boolean = false;
 
   constructor(
@@ -21,9 +21,6 @@ export class EditComponent implements OnInit {
 
   async ngOnInit() {
     this.data = this.getLocalStorage();
-    if(this.data == null){
-      this.data = [];
-    }
 
     const urlParams = new URLSearchParams(window.location.search);
     let id = urlParams.get('id');
@@ -62,7 +59,6 @@ export class EditComponent implements OnInit {
     if(!this.isEdit){
       //Add cliente novo
       this.data.push(this.model);
-      console.log(this.data)
     } else{
       //Atualizar cliente da lista
       var index = this.data.findIndex((q => q.id == this.model.id));
@@ -82,6 +78,10 @@ export class EditComponent implements OnInit {
   }
 
   getLocalStorage(){
-    return JSON.parse(localStorage.getItem("dataClients")!);
+    let data = JSON.parse(localStorage.getItem("dataClients")!)
+    if(data == undefined){
+      data = new Array<Client>();
+    }
+    return data;
   }
 }

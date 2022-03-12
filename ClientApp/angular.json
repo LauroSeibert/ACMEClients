@@ -3,11 +3,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ACMEClients": {
+    "ACMEClient": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
           "strict": true
+        },
+        "@schematics/angular:component": {
+          "style": "scss"
         }
       },
       "root": "",
@@ -28,7 +31,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -69,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ACMEClients:build:production"
+              "browserTarget": "ACMEClient:build:production"
             },
             "development": {
-              "browserTarget": "ACMEClients:build:development",
+              "browserTarget": "ACMEClient:build:development",
               "proxyConfig": "proxy.conf.js"
             }
           },
@@ -81,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ACMEClients:build"
+            "browserTarget": "ACMEClient:build"
           }
         },
         "test": {
@@ -95,7 +98,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -129,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "ACMEClients"
+  "defaultProject": "ACMEClient"
 }

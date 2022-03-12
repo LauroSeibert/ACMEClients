@@ -1,14 +1,48 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
-<ul>
-  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-</ul>
-<p>To help you get started, we've also set up:</p>
-<ul>
-  <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-  <li><strong>Angular CLI integration</strong>. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-  <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
-</ul>
-<p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+<div class="container-width">
+  <div class="title">
+    <span>Lista Clientes</span>
+  </div>
+  <div class="desc">
+    <div style="display: flex; column-gap: 10px;">
+      <input type="text" class="default-input" [(ngModel)]="searchInput" placeholder="Buscar...">
+      <button class="cta-add" (click)="searchFilter()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+    <a class="cta-add" [routerLink]="['/edit']">
+      + Adicionar
+    </a>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Data de Nascimento</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="line" *ngFor="let item of data">
+        <th scope="row">{{item.nome}}</th>
+        <td>{{item.dNasc| date:'longDate'}}</td>
+        <td>{{item.cpf | mask: '000.000.000-00'}}</td>
+        <td>{{item.sexo}}</td>
+        <td>{{item.endereco}}</td>
+        <td>{{item.status == true ? "Ativo" : "Inativo"}}</td>
+        <td>
+          <a class="cta-action" [routerLink]="['/edit']" [queryParams]="{id: item.id}">
+            <i class="fa-solid fa-pen-to-square" title="Editar"></i>
+          </a>
+          <a class="cta-action" (click)="deleteItem(item)">
+            <i class="fa-solid fa-trash" title="Excluir"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
