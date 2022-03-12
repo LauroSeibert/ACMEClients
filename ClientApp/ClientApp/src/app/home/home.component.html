@@ -1,0 +1,48 @@
+<div class="container-width">
+  <div class="title">
+    <span>Lista Clientes</span>
+  </div>
+  <div class="desc">
+    <div style="display: flex; column-gap: 10px;">
+      <input type="text" class="default-input" [(ngModel)]="searchInput" placeholder="Buscar...">
+      <button class="cta-add" (click)="searchFilter()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+    <a class="cta-add" [routerLink]="['/edit']">
+      + Adicionar
+    </a>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Data de Nascimento</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="line" *ngFor="let item of data">
+        <th scope="row">{{item.nome}}</th>
+        <td>{{item.dNasc| date:'longDate'}}</td>
+        <td>{{item.cpf | mask: '000.000.000-00'}}</td>
+        <td>{{item.sexo}}</td>
+        <td>{{item.endereco}}</td>
+        <td>{{item.status == true ? "Ativo" : "Inativo"}}</td>
+        <td>
+          <a class="cta-action" [routerLink]="['/edit']" [queryParams]="{id: item.id}">
+            <i class="fa-solid fa-pen-to-square" title="Editar"></i>
+          </a>
+          <a class="cta-action" (click)="deleteItem(item)">
+            <i class="fa-solid fa-trash" title="Excluir"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

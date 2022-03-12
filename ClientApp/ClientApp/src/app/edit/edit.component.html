@@ -1,0 +1,41 @@
+<div class="container-width">
+  <div class="title">
+    <span>Cadastrar Cliente</span>
+  </div>
+  <div class="form-grid">
+    <div class="input-container">
+      <label> Nome </label>
+      <input class="default-input required" type="text" [(ngModel)]="model.nome">
+    </div>
+    <div class="input-container">
+      <label> Data de Nascimneto </label>
+      <input class="default-input required" type="date" [(ngModel)]="model.dNasc">
+    </div>
+    <div class="input-container">
+      <label> Cpf </label>
+      <input class="default-input required" mask="000.000.000-00" type="text" [(ngModel)]="model.cpf">
+    </div>
+    <div class="input-container">
+      <label> Sexo </label>
+      <select class="default-input required" type="text" [(ngModel)]="model.sexo">
+        <option>Feminino</option>
+        <option>Masculino</option>
+        <option>Não Informado</option>
+      </select>
+    </div>
+    <div class="input-container">
+      <label> Endereço </label>
+      <textarea class="default-input" type="text" [(ngModel)]="model.endereco"></textarea>
+    </div>
+    <div class="input-container">
+      <label> Status </label>
+      <select class="default-input required" type="text" [(ngModel)]="model.status">
+        <option selected value="true">Ativo</option>
+        <option value="false">Inativo</option>
+      </select>
+    </div>
+    <button class="cta-save" (click)="save()">
+      Salvar
+    </button>
+  </div>
+</div>

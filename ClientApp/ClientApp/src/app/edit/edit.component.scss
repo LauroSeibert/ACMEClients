@@ -1,0 +1,26 @@
+.form-grid{
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  .input-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+  }
+  .cta-save{
+    border: 0;
+    background-color: #00ADB5;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    height: 36px;
+    align-items: center;
+    padding: 0 20px;
+    width: max-content;
+    grid-column: 1 / -1;
+    margin: 0 auto;
+  }
+}
